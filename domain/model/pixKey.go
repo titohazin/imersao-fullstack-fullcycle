@@ -11,20 +11,21 @@ import (
 // IPixKeyData is a interface that shoud implement by the repository layer
 type IPixKeyData interface {
 	RegisterPixKey(pixKey *PixKey) (*PixKey, error)
-	FindPixKeyByKind(key string, kind string) (*PixKey, error)
+	FindPixKeyByID(key string, kind string) (*PixKey, error)
 	AddBank(bank *Bank) error
+	FindBankByID(id string) (*Bank, error)
 	AddAccount(account *Account) error
-	FindAccount(is string) (*Account, error)
+	FindAccountByID(id string) (*Account, error)
 }
 
 // PixKey Entity
 type PixKey struct {
 	Base      `valid:"required"`
-	Kind      string   `json:"kind" valid:"notnull"`
-	Key       string   `json:"key" valid:"notnull"`
-	AccountID string   `json:"account_id" valid:"notnull"`
+	Kind      string   `json:"kind" gorm:"type:varchar(20);not null" valid:"notnull"`
+	Key       string   `json:"key" gorm:"type:varchar(20);not null" valid:"notnull"`
+	AccountID string   `json:"account_id" gorm:"column:bank_id;type:uuid;not null" valid:"-"`
 	Account   *Account `valid:"_"`
-	Status    string   `json:"status" valid:"notnull"`
+	Status    string   `json:"status" gorm:"type:varchar(20);not null" valid:"notnull"`
 }
 
 func (pixKey *PixKey) isValid() error {

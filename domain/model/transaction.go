@@ -19,7 +19,7 @@ const (
 // ITransactionData is a interface that shoud implement by the repository layer
 type ITransactionData interface {
 	Register(transaction *Transaction) error
-	Save(Transaction *Transactions) error
+	Save(transaction *Transaction) error
 	Find(id string) (*Transaction, error)
 }
 
@@ -31,12 +31,14 @@ type Transactions struct {
 // Transaction of the application
 type Transaction struct {
 	Base              `valid:"required"`
+	AccountIDFrom     string   `json:"account_id_from" gorm:"column:account_id_from;type:uuid;not null" valid:"-"`
 	AccountFrom       *Account `valid:"-"`
-	Amount            float64  `json:"amount" valid:"notnull"`
+	Amount            float64  `json:"amount" gorm:"type:float;not null" valid:"notnull"`
+	PixKeyIDTo        string   `json:"pix_key_id_to" gorm:"column:pix_key_id_to;type:uuid;not null" valid:"notnull"`
 	PixKeyTo          *PixKey  `valid:"-"`
-	Status            string   `json:"status" valid:"notnull"`
-	Description       string   `json:"description" valid:"notnull"`
-	CancelDescription string   `json:"cancel_description" valid:"-"`
+	Status            string   `json:"status" gorm:"type:varchar(20);not null" valid:"notnull"`
+	Description       string   `json:"description" gorm:"type:varchar(255);not null" valid:"notnull"`
+	CancelDescription string   `json:"cancel_description" gorm:"type:varchar(255" valid:"-"`
 }
 
 func (transaction *Transaction) isValid() error {
