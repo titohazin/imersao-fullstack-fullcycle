@@ -13,6 +13,6 @@ func init() {
 // Base entity
 type Base struct {
 	ID        string    `json:"id" gorm:"column:id;type:uuid;not null" valid:"uuid"`
-	CreatedAt time.Time `json:"created_at" gorm:"type:timestamp;not null" valid:"notnull"`
+	CreatedAt time.Time `json:"created_at" gorm:"type:timestamp;not null" valid:"-"`
 	UpdatedAt time.Time `json:"updated_at" gorm:"type:timestamp;not null" valid:"-"`
 }

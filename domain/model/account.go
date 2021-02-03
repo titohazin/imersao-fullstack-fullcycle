@@ -12,7 +12,7 @@ type Account struct {
 	Base      `valid:"required"`
 	OwnerName string    `json:"owner_name" gorm:"column:owner_name;type:varchar(255);not null" valid:"notnull"`
 	BankID    string    `json:"bank_id" gorm:"column:bank_id;type:uuid;not null" valid:"-"`
-	Bank      *Bank     `valid:"notnull"`
+	Bank      *Bank     `valid:"-"`
 	Number    string    `json:"number" gorm:"type:varchar(20)" valid:"notnull"`
 	PixKey    []*PixKey `gorm:"ForeignKey:AccountID" valid:"-"`
 }
