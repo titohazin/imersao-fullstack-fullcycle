@@ -8,8 +8,8 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
-// IPixKeyData is a interface that shoud implement by the repository layer
-type IPixKeyData interface {
+// IPixKeyRepository is a interface that shoud implement by the repository layer
+type IPixKeyRepository interface {
 	RegisterPixKey(pixKey *PixKey) (*PixKey, error)
 	FindPixKeyByID(key string, kind string) (*PixKey, error)
 	AddBank(bank *Bank) error
