@@ -9,7 +9,7 @@ import (
 // TransactionUseCase Transaction use case
 type TransactionUseCase struct {
 	TransactionRepository model.ITransactionData
-	PixKeyRepository      model.IPixKeyData
+	PixKeyRepository      model.IPixKeyRepository
 }
 
 // Register a new transaction

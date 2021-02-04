@@ -36,9 +36,9 @@ type Transaction struct {
 	Amount            float64  `json:"amount" gorm:"type:float;not null" valid:"notnull"`
 	PixKeyIDTo        string   `json:"pix_key_id_to" gorm:"column:pix_key_id_to;type:uuid;not null" valid:"notnull"`
 	PixKeyTo          *PixKey  `valid:"-"`
-	Status            string   `json:"status" gorm:"type:varchar(20);not null" valid:"notnull"`
-	Description       string   `json:"description" gorm:"type:varchar(255);not null" valid:"notnull"`
-	CancelDescription string   `json:"cancel_description" gorm:"type:varchar(255" valid:"-"`
+	Status            string   `json:"status" gorm:"column:status;type:varchar(20);not null" valid:"notnull"`
+	Description       string   `json:"description" gorm:"column:description;type:varchar(255);not null" valid:"notnull"`
+	CancelDescription string   `json:"cancel_description" gorm:"column:cancel_description;type:varchar(255)" valid:"-"`
 }
 
 func (transaction *Transaction) isValid() error {

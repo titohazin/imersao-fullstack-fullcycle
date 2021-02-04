@@ -4,7 +4,7 @@ import "github.com/titohazin/imersao-fullstack-fullcycle/domain/model"
 
 // PixUseCase Pix use case
 type PixUseCase struct {
-	PixKeyRepository model.IPixKeyData
+	PixKeyRepository model.IPixKeyRepository
 }
 
 // RegisterPixKey Register PixKey
