@@ -2,6 +2,7 @@ package kafka
 
 import (
 	"fmt"
+	"os"
 
 	lkafka "github.com/confluentinc/confluent-kafka-go/kafka"
 )
@@ -10,7 +11,7 @@ import (
 func NewKafkaProducer() (*lkafka.Producer, error) {
 
 	configMap := &lkafka.ConfigMap{
-		"bootstrap.servers": "kafka:9092",
+		"bootstrap.servers": os.Getenv("kafkaBootstrapServers"),
 	}
 
 	producer, err := lkafka.NewProducer(configMap)

@@ -2,6 +2,7 @@ package kafka
 
 import (
 	"fmt"
+	"os"
 
 	lkafka "github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/jinzhu/gorm"
@@ -31,8 +32,8 @@ func NewKafkaProcessor(database *gorm.DB, producer *lkafka.Producer, deliveryCha
 func (kafkaProc *KafkaProcessor) Consume() {
 
 	configMap := &lkafka.ConfigMap{
-		"bootstrap.servers": "kafka:9092",
-		"group.id":          "consumergroup",
+		"bootstrap.servers": os.Getenv("kafkaBootstrapServers"),
+		"group.id":          os.Getenv("kafkaConsumerGroupId"),
 		"auto.offset.reset": "earliest",
 	}
 
@@ -42,7 +43,7 @@ func (kafkaProc *KafkaProcessor) Consume() {
 		panic(err)
 	}
 
-	topics := []string{"test"}
+	topics := []string{os.Getenv("kafkaTransactionTopic"), os.Getenv("kafkaTransactionConfirmationTopic")}
 	consumer.SubscribeTopics(topics, nil)
 
 	fmt.Println("Kfaka consumer has been created")
