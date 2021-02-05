@@ -1,3 +1,5 @@
+package cmd
+
 /*
 Copyright © 2021 NAME HERE <EMAIL ADDRESS>
 
@@ -13,18 +15,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package cmd
 
 import (
 	"fmt"
 	"os"
 
+	"github.com/jinzhu/gorm"
 	"github.com/spf13/cobra"
 
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
 )
 
+var database *gorm.DB
 var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
