@@ -8,7 +8,7 @@ import (
 
 // TransactionUseCase Transaction use case
 type TransactionUseCase struct {
-	TransactionRepository model.ITransactionData
+	TransactionRepository model.ITransactionRepository
 	PixKeyRepository      model.IPixKeyRepository
 }
 

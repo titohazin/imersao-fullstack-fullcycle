@@ -13,23 +13,23 @@ type TransactionRepositoryDb struct {
 }
 
 // Register is a interface implementation of the Register in Transaction
-func (repo *TransactionRepositoryDb) Register(transaction *model.Transaction) (*model.Transaction, error) {
+func (repo *TransactionRepositoryDb) Register(transaction *model.Transaction) error {
 
 	if err := repo.Db.Create(transaction).Error; err != nil {
-		return nil, err
+		return err
 	}
 
-	return transaction, nil
+	return nil
 }
 
 // Save is a interface implementation of the Save in Transaction
-func (repo *TransactionRepositoryDb) Save(transaction *model.Transaction) (*model.Transaction, error) {
+func (repo *TransactionRepositoryDb) Save(transaction *model.Transaction) error {
 
 	if err := repo.Db.Save(transaction).Error; err != nil {
-		return nil, err
+		return err
 	}
 
-	return transaction, nil
+	return nil
 }
 
 // Find is a interface implementation of the Find in Transaction

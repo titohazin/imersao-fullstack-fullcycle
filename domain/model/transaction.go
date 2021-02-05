@@ -16,8 +16,8 @@ const (
 	TransactionConfirmed string = "confirmed"
 )
 
-// ITransactionData is a interface that shoud implement by the repository layer
-type ITransactionData interface {
+// ITransactionRepository is a interface that shoud implement by the repository layer
+type ITransactionRepository interface {
 	Register(transaction *Transaction) error
 	Save(transaction *Transaction) error
 	Find(id string) (*Transaction, error)
